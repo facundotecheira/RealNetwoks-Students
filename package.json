@@ -1,0 +1,22 @@
+{
+  "name": "real-network-students",
+  "version": "1.0.0",
+  "description": "Student management system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facundotecheira/RealNetwoks-Students.git"
+  },
+  "author": "Techeira Facundo Sebastian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facundotecheira/RealNetwoks-Students/issues"
+  },
+  "homepage": "https://github.com/facundotecheira/RealNetwoks-Students#readme",
+  "dependencies": {
+    "mongoose": "^6.2.7"
+  }
+}
