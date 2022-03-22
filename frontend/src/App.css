@@ -97,6 +97,16 @@
 
 /* Form */
 
+.titleForm{
+
+  font-weight: 550;
+  font-size: 20vmin;
+  font-family: "Petemoss", "cursive";
+  text-align: center;
+
+}
+
+
 .form{
   
   border: 1px solid black;
