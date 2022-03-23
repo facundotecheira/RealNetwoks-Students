@@ -10,7 +10,7 @@ const studentControllers = {
                 return res.json({ success: 'false', response: 'user already exists' })
             } else {
                 const newStudent = await new Students(req.body).save()
-                return res.json({ response: 'user successfully created' })
+                return res.json({ response: 'Student successfully created' })
             }
 
         } catch (error) {

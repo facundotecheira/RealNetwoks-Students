@@ -5,9 +5,9 @@ const Footer = () => {
             <div className="footerContainer">
                 <div className="navegation">
                     <Link to="/">Home</Link>
-                    <Link to="/cities">Cities</Link>
-                    <a href="#a">Sign in</a>
-                    <a href="#a">Sign up</a>
+                    <Link to="/register">Register a student</Link>
+                    <Link to="/list">list of students</Link>
+                   
                 </div>
 
                 <div className="copy">

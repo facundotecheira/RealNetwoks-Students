@@ -45,6 +45,8 @@ const ListStudents = () => {
         })
         if (resultado.isConfirmed) {
             await Dispatch(studentsAction.deleteStudent(id))
+            
+
             Swal.fire(
                 'Deleted!',
                 'Your comment has been deleted.',
@@ -58,45 +60,51 @@ const ListStudents = () => {
     return (
         <>
             <Nav />
-            <h1 className='titleForm'>list of students</h1>
-            <div className='containerList'>
-
-                <table class="table table-dark table-hover">
-                    <thead>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Student number</th>
-                        <th>Phone number</th>
-                        <th colSpan="2">Opciones</th>
-                    </thead>
-                    <tbody>
-                        {
-                            lista && lista.map((x) => {
-
-                                return (
-                                    <tr>
-                                        <td>{x.name}</td>
-                                        <td>{x.email}</td>
-                                        <td>{x.studentNumber}</td>
-                                        <td>{x.phoneNumber}</td>
-
-                                        <td>
-                                            <Link className='btn btn-info' to={`/editstudent/${x._id}`}>
-                                                Editar
-                                            </Link>
-
-                                        </td>
-                                        <td>
-                                            <i className='btn btn-danger' onClick={() => confirmAlert(x._id)}>Eliminar</i>
-                                        </td>
-
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
-            </div>
+            {
+                lista.length == 0 ? <h1 className="titleForm">no student registration</h1>
+                :( 
+                <h1 className='titleForm'>list of students</h1>,
+                
+                <div className='containerList'>
+    
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Student number</th>
+                            <th>Phone number</th>
+                            <th colSpan="2">Options</th>
+                        </thead>
+                        <tbody>
+                            {
+                                 lista.map((x) => {
+    
+                                    return (
+                                        <tr>
+                                            <td>{x.name}</td>
+                                            <td>{x.email}</td>
+                                            <td>{x.studentNumber}</td>
+                                            <td>{x.phoneNumber}</td>
+    
+                                            <td>
+                                                <Link className='btn btn-info' to={`/editstudent/${x._id}`}>
+                                                    Edit
+                                                </Link>
+    
+                                            </td>
+                                            <td>
+                                                <i className='btn btn-danger' onClick={() => confirmAlert(x._id)}>Delete</i>
+                                            </td>
+    
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>)
+            }
+           
 
         </>
 
