@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
-import { useRef, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import toasty from "../components/Toast";
+import Swal from 'sweetalert2'
 
 import Nav from './Nav'
 import studentsAction from '../redux/action/studentsAction'
@@ -11,21 +13,54 @@ const ListStudents = () => {
 
     const Dispatch = useDispatch()
 
+    const  students = useSelector(state =>state.studentsReducer.students)
+
+    console.log(students)
+
     useEffect(() => {
-        getAllStudents()
-    }, [])
+        if(students.length>0){
+            setLista(students)
+        }else{
+           getAllStudents() 
+        }
+        
+    }, [students])
 
     const getAllStudents = async () => {
         let resultado = await Dispatch(studentsAction.getStudents())
-        setLista(resultado.response)
+        setLista(resultado.response) 
+        
+        
     }
+
+
+    const confirmAlert = async (id) => {
+        let resultado = await Swal.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+        if (resultado.isConfirmed) {
+            await Dispatch(studentsAction.deleteStudent(id))
+            Swal.fire(
+                'Deleted!',
+                'Your comment has been deleted.',
+                'success'
+            )
+        }
+
+    }
+
 
     return (
         <>
             <Nav />
             <h1 className='titleForm'>list of students</h1>
             <div className='containerList'>
-               
+
                 <table class="table table-dark table-hover">
                     <thead>
                         <th>Name</th>
@@ -44,18 +79,16 @@ const ListStudents = () => {
                                         <td>{x.email}</td>
                                         <td>{x.studentNumber}</td>
                                         <td>{x.phoneNumber}</td>
-                                        
-                                        <td>
-                                <Link className='btn btn-info' to={`/editNotas/${x._id}`}>
-                                    Editar
-                                </Link>
 
-                            </td>
-                            <td>
-                                <i className='btn btn-danger' 
-                                // onClick={() => confirmAlert(x._id)}
-                                >Eliminar</i>
-                            </td>
+                                        <td>
+                                            <Link className='btn btn-info' to={`/editstudent/${x._id}`}>
+                                                Editar
+                                            </Link>
+
+                                        </td>
+                                        <td>
+                                            <i className='btn btn-danger' onClick={() => confirmAlert(x._id)}>Eliminar</i>
+                                        </td>
 
                                     </tr>
                                 )

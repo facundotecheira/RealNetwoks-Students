@@ -40,6 +40,7 @@ const RegisterStudents = () =>{
             email.current.value = ""
             studentNumber.current.value = ""
             phoneNumber.current.value = ""
+            await Dispatch(studentsAction.getStudents())
             return toasty('success',resultado.response.response) 
         }   
         
