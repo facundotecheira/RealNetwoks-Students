@@ -12,6 +12,8 @@ function App() {
    
    <Routes>
      
+     {/* heroku */}
+
     <Route path='/' element={<Home/>}/>
     <Route path='/register' element={<RegisterStudents/>}/>
     <Route path='/list' element={<ListStudents/>}/>
