@@ -71,7 +71,7 @@ const ListStudents = () => {
                     </thead>
                     <tbody>
                         {
-                            lista && lista.map((x) => {
+                            lista.length> 0 ? lista.map((x) => {
 
                                 return (
                                     <tr>
@@ -92,7 +92,7 @@ const ListStudents = () => {
 
                                     </tr>
                                 )
-                            })
+                            }):<h1 className="titleForm">no student registration</h1>
                         }
                     </tbody>
                 </table>
