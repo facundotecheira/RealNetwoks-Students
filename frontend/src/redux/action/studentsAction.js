@@ -5,7 +5,7 @@ const studentsAction = {
     addStudent:(data) =>{
         return async(dispatch)=>{
             try {
-                const student = await axios.post('http://localhost:4000/api/student',data)
+                const student = await axios.post('https://real-networks-students.herokuapp.com/api/student',data)
                 return {response: student.data}
             } catch (error) {
                 
@@ -16,7 +16,7 @@ const studentsAction = {
     getStudents:() =>{
         return async(dispatch)=>{
             try {
-                const students = await axios.get('http://localhost:4000/api/student')
+                const students = await axios.get('https://real-networks-students.herokuapp.com/api/student')
                 if (students.data.response !== 'database connection error'){
                     dispatch({type:'STUDENTS',payload: students.data.response})
                 }
@@ -31,7 +31,7 @@ const studentsAction = {
     getOneStudent: (id) =>{
         return async () =>{
             try {
-                const student = await axios.get(`http://localhost:4000/api/student/${id}`)
+                const student = await axios.get(`https://real-networks-students.herokuapp.com/api/student/${id}`)
                 return {response: student.data.response}
             } catch (error) {
                 
@@ -43,7 +43,7 @@ const studentsAction = {
 
         return async (dispatch) =>{
             try {
-                const student = await axios.put(`http://localhost:4000/api/student/${id}`,data)
+                const student = await axios.put(`https://real-networks-students.herokuapp.com/api/student/${id}`,data)
                 if (student.data.response !== 'database connection error'){
                     dispatch({type:'STUDENTS',payload: student.data.response})
                 }
@@ -58,7 +58,7 @@ const studentsAction = {
     deleteStudent: (id) =>{
         return async (dispatch) =>{
             try {
-                const student = await axios.delete(`http://localhost:4000/api/student/${id}`)
+                const student = await axios.delete(`https://real-networks-students.herokuapp.com/api/student/${id}`)
                 if (student.data.response !== 'database connection error'){
                     dispatch({type:'STUDENTS',payload: student.data.response})
                 }
