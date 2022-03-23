@@ -1,6 +1,6 @@
 const PageNotFound = () =>{
     return(
-        <h1 className="titleForm">Register a new student</h1>
+        <h1 className="titleForm">Page not found</h1>
     )
 }
 
