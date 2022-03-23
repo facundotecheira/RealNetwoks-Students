@@ -1,6 +1,8 @@
 import Nav from "./Nav"
-import { useRef,useEffect,useState } from "react"
+import { useRef } from "react"
+import {useDispatch} from "react-redux"
 import toasty from "./Toast"
+import studentsAction from '../redux/action/studentsAction'
 
 const RegisterStudents = () =>{
 
@@ -9,7 +11,12 @@ const RegisterStudents = () =>{
     const studentNumber = useRef()
     const phoneNumber = useRef()
 
-    const HandleSubmit = (e) =>{
+    const Dispatch = useDispatch()
+
+   
+
+
+    const HandleSubmit = async (e) =>{
         e.preventDefault()
         if(name.current.value == "" || email.current.value == "" || studentNumber.current.value == "" || phoneNumber.current.value == ""){
             return toasty('error','The fields cannot be empty')
@@ -23,7 +30,18 @@ const RegisterStudents = () =>{
             phoneNumber: phoneNumber.current.value
         }
 
+        let resultado = await Dispatch(studentsAction.addStudent(data))
         
+        if(resultado.response.success){
+           return toasty('error',resultado.response.response) 
+        }else{
+
+            name.current.value = ""
+            email.current.value = ""
+            studentNumber.current.value = ""
+            phoneNumber.current.value = ""
+            return toasty('success',resultado.response.response) 
+        }   
         
     }
 

@@ -16,7 +16,7 @@ const Nav = () =>{
                 <Link class="nav-link" to="/register">Register a student</Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to="#">list of students</Link>
+                <Link class="nav-link" to="/list">list of students</Link>
               </li>
             </ul>
           </div>
